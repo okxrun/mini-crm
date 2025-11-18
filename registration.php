@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt = $pdo->prepare("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)");
             $stmt->execute([$name, $email, $hashPassword, 'user']);
 
-            header("Location: login.php?registered=1");
+            header("Location: index.php?registered=1");
             exit;
         }
     }
