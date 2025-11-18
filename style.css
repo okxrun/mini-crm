@@ -1,0 +1,22 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    align-items: center;
+    margin-top: 20px;
+}
+
+input {
+    margin-bottom: 10px;
+}
