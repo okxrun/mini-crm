@@ -26,8 +26,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         } else {
             $hashPassword = password_hash($rawPassword, PASSWORD_DEFAULT);
 
-            $stmt = $pdo->prepare("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)");
-            $stmt->execute([$name, $email, $hashPassword, 'user']);
+            $dsn = $pdo->prepare("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)");
+            $dsn->execute([$name, $email, $hashPassword, 'user']);
 
             header("Location: index.php?registered=1");
             exit;
@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <h2 style="margin-bottom:10px;">Sign up</h2>
 
         <?php if (!empty($error)): ?>
-            <div class="error" style="background-color:rgba(238, 78, 78, 0.94);color: white;font-family:sans-serif;font-weight:bold;padding:5px;margin-bottom:10px"><?= htmlspecialchars($error) ?></div>
+            <div style="background-color:rgba(238, 78, 78, 0.94);color: white;font-family:sans-serif;font-weight:bold;padding:5px;margin-bottom:10px"><?= htmlspecialchars($error) ?></div>
         <?php endif; ?>
 
         <input type="text" name="name" placeholder="name" required value="<?= isset($name) ? htmlspecialchars($name) : '' ?>"><br><br>
