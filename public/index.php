@@ -1,6 +1,6 @@
 <?php
 session_start();
-require("db.php");
+require __DIR__ . "/../db.php";
 
 $error = null;
 
@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Authorization</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../styles/style.css">
 </head>
 <body>
     <form method="post">

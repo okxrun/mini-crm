@@ -1,11 +1,14 @@
 <?php 
 session_start();
+require __DIR__ . "/../db.php";
 
 if (!isset($_SESSION['user_id'])) {
     header("Location: index.php");
     exit;
 }
 
+$stmt = $pdo->query("SELECT name, email FROM customers ORDER BY id ASC");
+$customers = $stmt->fetchAll();
 
 ?>
 
@@ -15,7 +18,7 @@ if (!isset($_SESSION['user_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="../styles/dashboard.css">
 </head>
 <body>
     <div class="user__info">
@@ -29,11 +32,18 @@ if (!isset($_SESSION['user_id'])) {
                 <th>Name</th>
                 <th>Email</th>
             </tr>
+            <?php foreach ($customers as $c): ?>
             <tr>
-                <td>kir</td>
-                <td>cvrsed@gmail.com</td>
+                <td><?= htmlspecialchars($c['name']) ?></td>
+                <td><?= htmlspecialchars($c['email']) ?></td>
             </tr>
+            <?php endforeach; ?>
         </table>
+    </div>
+    <div class="buttons">
+        <a href="add_customer.php"><button>Add</button></a>
+        <a href="edit_customer.php"><button>Edit</button></a>
+        <a href="delete_customer.php"><button>Delete</button></a>
     </div>
     
 </body>

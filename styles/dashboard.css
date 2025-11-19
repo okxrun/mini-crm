@@ -26,3 +26,13 @@ tr, td, th {
     align-items: end;
     margin: 5px;
 }
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 3px;
+}
+
+button {
+    margin: 2px;
+}
