@@ -7,6 +7,7 @@
 body {
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 
 form {
@@ -19,4 +20,8 @@ form {
 
 input {
     margin-bottom: 10px;
+}
+
+.back {
+    margin-top: 10px;
 }
