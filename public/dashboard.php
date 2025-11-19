@@ -27,25 +27,27 @@ $customers = $repo->getAll();
         <p>Email: <?= $_SESSION['email']?></p>
         <a href="index.php"><button>Log out</button></a>
     </div>
+    <h2 style="text-align:center">Customers</h2>
     <div class="table">
         <table>
             <tr>
                 <th>Name</th>
                 <th>Email</th>
+                <th>Actions</th>
             </tr>
             <?php foreach ($customers as $c): ?>
             <tr>
                 <td><?= htmlspecialchars($c['name']) ?></td>
                 <td><?= htmlspecialchars($c['email']) ?></td>
+                <td>
+                    <a href="edit_customer.php?id=<?= $c['id'] ?>"><button>Edit</button></a>
+                    <a href="delete_customer.phpid=<?= $c['id'] ?>" onclick="return confirm('Are you sure?')"><button>Delete</button></a>                    
+                </td>
             </tr>
             <?php endforeach; ?>
         </table>
     </div>
-    <div class="buttons">
-        <a href="add_customer.php"><button>Add</button></a>
-        <a href="edit_customer.php"><button>Edit</button></a>
-        <a href="delete_customer.php"><button>Delete</button></a>
-    </div>
+    <a href="add_customer.php" class="add__button"><button>Add</button></a>
     
 </body>
 </html>

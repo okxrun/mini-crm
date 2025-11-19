@@ -27,12 +27,15 @@ tr, td, th {
     margin: 5px;
 }
 
-.buttons {
-    display: flex;
-    justify-content: center;
-    margin-top: 3px;
+button {
+    border: 1px solid rgba(175, 175, 175, 1);
+    padding: 3px;
 }
 
-button {
-    margin: 2px;
+.add__button {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    text-decoration: none;
+    border: none;
 }
