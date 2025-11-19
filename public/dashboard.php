@@ -1,18 +1,15 @@
 <?php 
 session_start();
 
-require __DIR__ . "/../db.php";
-require_once __DIR__ . "/../app/Repositories/MySqlCustomerRepository.php";
-
-$repo = new MySqlCustomerRepository($pdo);
-
 if (!isset($_SESSION['user_id'])) {
     header("Location: index.php");
     exit;
 }
 
-$stmt = $pdo->query("SELECT name, email FROM customers ORDER BY id ASC");
-$customers = $stmt->fetchAll();
+require_once __DIR__ . "/../app/Repositories/MySqlCustomerRepository.php";
+
+$repo = new MySqlCustomerRepository($pdo);
+$customers = $repo->getAll();
 
 ?>
 
