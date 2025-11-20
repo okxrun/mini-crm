@@ -29,5 +29,10 @@ class MySqlCustomerRepository implements CustomerRepository {
         $stmt->execute([$id]);
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
+
+    public function delete($id) {
+        $stmt = $this->pdo->prepare("DELETE FROM customers WHERE id = ?");
+        return $stmt->execute([$id]);
+    }
 }
 ?>

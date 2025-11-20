@@ -29,6 +29,13 @@ $customers = $repo->getAll();
         <a href="index.php"><button>Log out</button></a>
     </div>
     <h2 style="text-align:center">Customers</h2>
+
+    <?php if (isset($_GET['deleted']) && $_GET['deleted'] == 1): ?>
+        <div class="message">
+            <div class="success">Delete successful</div>
+        </div>    
+    <?php endif; ?>
+
     <div class="table">
         <table>
             <tr>
@@ -43,7 +50,9 @@ $customers = $repo->getAll();
                 <td>
                     <a href="edit_customer.php?id=<?= $c['id'] ?>"><button>Edit</button></a>
                     <?php if (isAdmin()): ?>
-                        <a href="delete_customer.phpid=<?= $c['id'] ?>" onclick="return confirm('Are you sure?')"><button>Delete</button></a>
+                        <a href="delete_customer.php?id=<?= $c['id'] ?>" onclick="return confirm('Are you sure?')"><button>Delete</button></a>
+                    <?php else: ?>
+                        <button disabled>No acces</button>
                     <?php endif; ?>                    
                 </td>
             </tr>

@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h2>Add customer</h2>
 
     <?php if ($error): ?>
-        <div style="background-color:rgba(238, 78, 78, 0.94);color:white;padding:5px;margin-bottom:10px;">
+        <div class="error">
             <?= htmlspecialchars($error) ?>
         </div>
     <?php endif; ?>
