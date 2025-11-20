@@ -32,13 +32,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error = "Invalid email format";
     } else {
-        $repo->update($id, [
+        try {
+            $repo->update($id, [
             'name' => $name,
             'email' => $email
         ]);
-
         header("Location: dashboard.php");
         exit;
+        } catch (Exception $e) {
+            if ($e->getMessage() === 'duplicate_email') {
+                $error = "Email already use";
+            } else {
+                throw $e;
+            }
+        }
     }
 }
 
@@ -56,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <h2>Edit customer</h2>
 
     <?php if ($error): ?>
-        <div style="background-color:rgba(238, 78, 78, 0.94);color: white;font-family:sans-serif;font-weight:bold;padding:5px;margin-bottom:10px"><?= htmlspecialchars($error) ?></div>
+        <div class="error"><?= htmlspecialchars($error) ?></div>
     <?php endif; ?>
 
     <form method="post">

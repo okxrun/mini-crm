@@ -33,7 +33,7 @@ $customers = $repo->getAll();
     <?php if (isset($_GET['deleted']) && $_GET['deleted'] == 1): ?>
         <div class="message">
             <div class="success">Delete successful</div>
-        </div>    
+        </div>
     <?php endif; ?>
 
     <div class="table">

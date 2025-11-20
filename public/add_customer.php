@@ -20,13 +20,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error = "Invalid email format";
     } else {
-        $repo->create([
+        try {
+            $repo->create([
             'name' => $name,
             'email' => $email
-        ]);
-
-        header("Location: dashboard.php");
-        exit;
+            ]);
+        
+            header("Location: dashboard.php");
+            exit;
+        } catch (Exception $e) {
+            if ($e->getMessage() === "duplicate_email") {
+                $error = "Email already exists";
+            } else {
+                throw $e;
+            }
+        }
     }
 }
 ?>

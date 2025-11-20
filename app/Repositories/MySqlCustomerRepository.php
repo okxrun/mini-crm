@@ -15,13 +15,30 @@ class MySqlCustomerRepository implements CustomerRepository {
     }
 
     public function create($data) {
-        $stmt = $this->pdo->prepare("INSERT INTO customers (name, email) VALUES (?, ?)");
-        $stmt->execute([$data['name'], $data['email']]);
+        try {
+            $stmt = $this->pdo->prepare("INSERT INTO customers (name, email) VALUES (?, ?)");
+            return $stmt->execute([$data['name'], $data['email']]);
+        } catch (PDOException $e) {
+            if ($e->getCode() === '23000') {
+                throw new Exception("duplicate_email");
+            } else {
+                throw $e;
+            }
+        }
+        
     }
 
     public function update($id, $data) {
-        $stmt = $this->pdo->prepare("UPDATE customers SET name = ?, email = ? WHERE id = ?");
-        return $stmt->execute([$data['name'], $data['email'], $id]);
+        try {
+            $stmt = $this->pdo->prepare("UPDATE customers SET name = ?, email = ? WHERE id = ?");
+            return $stmt->execute([$data['name'], $data['email'], $id]);
+        } catch (PDOException $e) {
+            if ($e->getCode() === '23000') {
+                throw new Exception("duplicate_email");
+            } else {
+                throw $e;
+            }
+        }
     }
 
     public function find($id) {
