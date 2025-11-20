@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 require __DIR__ . "/../db.php";
 
 $error = null;
@@ -20,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['role'] = $user['role'];
             $_SESSION['name'] = $user['name'];
             $_SESSION['email'] = $user['email'];
+
             header("Location: dashboard.php");
             exit;
         } else {

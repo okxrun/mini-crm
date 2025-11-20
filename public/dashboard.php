@@ -7,6 +7,7 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 require_once __DIR__ . "/../app/Repositories/MySqlCustomerRepository.php";
+require __DIR__ . "/../app/helpers.php";
 
 $repo = new MySqlCustomerRepository($pdo);
 $customers = $repo->getAll();
@@ -41,7 +42,9 @@ $customers = $repo->getAll();
                 <td><?= htmlspecialchars($c['email']) ?></td>
                 <td>
                     <a href="edit_customer.php?id=<?= $c['id'] ?>"><button>Edit</button></a>
-                    <a href="delete_customer.phpid=<?= $c['id'] ?>" onclick="return confirm('Are you sure?')"><button>Delete</button></a>                    
+                    <?php if (isAdmin()): ?>
+                        <a href="delete_customer.phpid=<?= $c['id'] ?>" onclick="return confirm('Are you sure?')"><button>Delete</button></a>
+                    <?php endif; ?>                    
                 </td>
             </tr>
             <?php endforeach; ?>

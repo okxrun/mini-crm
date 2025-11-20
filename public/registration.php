@@ -27,8 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $hashPassword = password_hash($rawPassword, PASSWORD_DEFAULT);
 
             $stmt = $pdo->prepare("INSERT INTO users (name, email, password, role) VALUES (?, ?, ?, ?)");
-            $role = ($email === "admin@mail.com") ? 'admin' : 'user';
-            $stmt->execute([$name, $email, $hashPassword, $role]);
+            $stmt->execute([$name, $email, $hashPassword, 'user']);
 
             header("Location: index.php?registered=1");
             exit;
