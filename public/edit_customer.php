@@ -57,20 +57,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit customers</title>
-    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/main.css">
 </head>
 <body>
-    <h2>Edit customer</h2>
+    <main>
+        <h2>Edit customer</h2>
 
-    <?php if ($error): ?>
-        <div class="error"><?= htmlspecialchars($error) ?></div>
-    <?php endif; ?>
+        <?php if ($error): ?>
+            <div class="error"><?= htmlspecialchars($error) ?></div>
+        <?php endif; ?>
 
-    <form method="post">
-        <input type="text" name="name" placeholder="edit name" value="<?= htmlspecialchars($customer['name']) ?>">
-        <input type="email" name="email" placeholder="edit email" value="<?= htmlspecialchars($customer['email']) ?>">
-        <button type="submit">Save changes</button>
-    </form>
-    <a class="back" href="dashboard.php"><p>Back</p></a>
+        <form method="post">
+            <input type="text" name="name" placeholder="edit name" value="<?= htmlspecialchars($customer['name']) ?>">
+            <input type="email" name="email" placeholder="edit email" value="<?= htmlspecialchars($customer['email']) ?>">
+            <button type="submit">Save changes</button>
+        </form>
+        <a href="dashboard.php"><button class="back__btn">Back→</button></a>
+    </main>
 </body>
 </html>

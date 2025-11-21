@@ -45,23 +45,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Add customer</title>
-    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="stylesheet" href="../styles/main.css">
 </head>
 <body>
-    <h2>Add customer</h2>
+    <main>
+        <h2>Add customer</h2>
 
-    <?php if ($error): ?>
-        <div class="error">
-            <?= htmlspecialchars($error) ?>
-        </div>
-    <?php endif; ?>
+        <?php if ($error): ?>
+            <div class="error">
+                <?= htmlspecialchars($error) ?>
+            </div>
+        <?php endif; ?>
 
-    <form method="post">
-        <input type="text" name="name" placeholder="name" required value="<?= isset($name) ? htmlspecialchars($name) : '' ?>"><br><br>
-        <input type="email" name="email" placeholder="email" required><br><br>
-        <button type="submit">Add</button>
-    </form>
+        <form method="post">
+            <input type="text" name="name" placeholder="name" required value="<?= isset($name) ? htmlspecialchars($name) : '' ?>"><br><br>
+            <input type="email" name="email" placeholder="email" required><br><br>
+            <button type="submit">Add</button>
+        </form>
 
-    <p class="back"><a href="dashboard.php">Back</a></p>
+        <a class="back__btn" href="dashboard.php"><button>Back→</button></a>
+    </main>
 </body>
 </html>
