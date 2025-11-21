@@ -27,7 +27,7 @@ $customers = $repo->getAll();
         <div class="user__info">
             <p>Now authorizied <?= $_SESSION['role'] ?>: <?= $_SESSION['name'] ?></p>
             <p>Email: <?= $_SESSION['email']?></p>
-            <a href="index.php"><button>Log out</button></a>
+            <a href="logout.php"><button>Log out</button></a>
         </div>
     </head>
     <hr>
